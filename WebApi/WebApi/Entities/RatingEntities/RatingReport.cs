@@ -2,12 +2,12 @@
 
 namespace WebApi.Entities.RatingEntities
 {
-    public class Rating
+    public class RatingReport
     {
         public int Total { get; set; }
         public Dictionary<DateTime, RatingRecord> Records { get; set; }
 
-        public Rating()
+        public RatingReport()
         {
             Total = 10339;
             Records = new Dictionary<DateTime, RatingRecord>()

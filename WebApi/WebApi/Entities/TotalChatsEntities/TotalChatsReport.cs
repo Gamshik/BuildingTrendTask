@@ -2,11 +2,11 @@
 
 namespace WebApi.Entities.TotalChatsEntities
 {
-    public class TotalChats
+    public class TotalChatsReport
     {
         public int Total { get; set; }
         public Dictionary<DateTime, TotalChatsRecord> Records { get; set; }
-        public TotalChats()
+        public TotalChatsReport()
         {
             Total = 10399;
             Records = new Dictionary<DateTime, TotalChatsRecord>()

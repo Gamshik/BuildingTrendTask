@@ -2,12 +2,12 @@
 
 namespace WebApi.Entities.DurationEntities
 {
-    public class Duration
+    public class DurationReport
     {
         public int Total { get; set; }
         public Dictionary<DateTime, DurationRecord> Records { get; set; }
 
-        public Duration()
+        public DurationReport()
         {
             Total = 10399;
             Records = new Dictionary<DateTime, DurationRecord>()

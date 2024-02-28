@@ -2,12 +2,12 @@
 
 namespace WebApi.Entities.ResponseTimeEntities
 {
-    public class ResponseTime
+    public class ResponseTimeReport
     {
         public int Total { get; set; }
         public Dictionary<DateTime, ResponseTimeRecord> Record { get; set; }
 
-        public ResponseTime()
+        public ResponseTimeReport()
         {
             Total = 7949;
             Record = new Dictionary<DateTime, ResponseTimeRecord>()

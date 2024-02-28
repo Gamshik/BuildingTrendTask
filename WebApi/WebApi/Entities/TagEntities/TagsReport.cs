@@ -8,12 +8,12 @@ using System.Text.Json;
 
 namespace WebApi.Entities.TagEntities
 {
-    public class Tag
+    public class TagsReport
     {
         public int Total { get; set; }
         public Dictionary<DateTime, dynamic> Records { get; set; }
 
-        public Tag()
+        public TagsReport()
         {
             Total = 10399;
             Records = new Dictionary<DateTime, dynamic>()
