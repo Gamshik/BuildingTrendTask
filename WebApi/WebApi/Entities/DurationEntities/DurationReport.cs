@@ -1,12 +1,10 @@
 ﻿using System.Text.Json;
+using WebApi.Entities.BaseEntities;
 
 namespace WebApi.Entities.DurationEntities
 {
-    public class DurationReport
+    public class DurationReport : ReportBase<DurationRecord>
     {
-        public int Total { get; set; }
-        public Dictionary<DateTime, DurationRecord> Records { get; set; }
-
         public DurationReport()
         {
             Total = 10399;
@@ -28,7 +26,5 @@ namespace WebApi.Entities.DurationEntities
                 { DateTime.Parse("2024-01-14"), new DurationRecord() {AgentsChattingDuration = 410, Count = 76, Duration = 535}}
             };
         }
-
-        public string ToJson() => JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
     }
 }

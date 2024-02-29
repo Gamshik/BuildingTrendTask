@@ -1,11 +1,10 @@
 ﻿using System.Text.Json;
+using WebApi.Entities.BaseEntities;
 
 namespace WebApi.Entities.TotalChatsEntities
 {
-    public class TotalChatsReport
+    public class TotalChatsReport : ReportBase<TotalChatsRecord>
     {
-        public int Total { get; set; }
-        public Dictionary<DateTime, TotalChatsRecord> Records { get; set; }
         public TotalChatsReport()
         {
             Total = 10399;
@@ -27,6 +26,5 @@ namespace WebApi.Entities.TotalChatsEntities
                 { DateTime.Parse("2024-01-14"), new TotalChatsRecord() {Total = 76}}
             };
         }
-        public string ToJson() => JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
     }
 }

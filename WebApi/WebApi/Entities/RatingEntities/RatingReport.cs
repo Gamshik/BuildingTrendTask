@@ -1,12 +1,10 @@
 ﻿using System.Text.Json;
+using WebApi.Entities.BaseEntities;
 
 namespace WebApi.Entities.RatingEntities
 {
-    public class RatingReport
+    public class RatingReport : ReportBase<RatingRecord>
     {
-        public int Total { get; set; }
-        public Dictionary<DateTime, RatingRecord> Records { get; set; }
-
         public RatingReport()
         {
             Total = 10339;
@@ -28,7 +26,5 @@ namespace WebApi.Entities.RatingEntities
                 {DateTime.Parse("2024-01-14"), new RatingRecord() { Bad = 76, Good = 11 } }
             };
         }
-
-        public string ToJson() => JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
     }
 }

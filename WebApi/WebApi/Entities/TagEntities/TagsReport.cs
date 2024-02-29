@@ -5,14 +5,12 @@ using System.Dynamic;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text.Json;
+using WebApi.Entities.BaseEntities;
 
 namespace WebApi.Entities.TagEntities
 {
-    public class TagsReport
+    public class TagsReport : ReportBase<dynamic>
     {
-        public int Total { get; set; }
-        public Dictionary<DateTime, dynamic> Records { get; set; }
-
         public TagsReport()
         {
             Total = 10399;
@@ -34,7 +32,5 @@ namespace WebApi.Entities.TagEntities
                 { DateTime.Parse("2024-01-14"), new { Bonus_general_info = 4, Casino_Bonus = 25, Close_in_progress = 3, Closed_PG_01 = 1, Closed_Personal_Reason_03 = 1, Closure = 1 } }
             };
         }
-
-        public string ToJson() => JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
     }
 }

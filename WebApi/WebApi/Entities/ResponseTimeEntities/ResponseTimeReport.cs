@@ -1,16 +1,14 @@
 ﻿using System.Text.Json;
+using WebApi.Entities.BaseEntities;
 
 namespace WebApi.Entities.ResponseTimeEntities
 {
-    public class ResponseTimeReport
+    public class ResponseTimeReport : ReportBase<ResponseTimeRecord>
     {
-        public int Total { get; set; }
-        public Dictionary<DateTime, ResponseTimeRecord> Record { get; set; }
-
         public ResponseTimeReport()
         {
             Total = 7949;
-            Record = new Dictionary<DateTime, ResponseTimeRecord>()
+            Records = new Dictionary<DateTime, ResponseTimeRecord>()
             {
                 { DateTime.Parse("2024-01-01"), new ResponseTimeRecord() { Count = 583, ResponseTime = 51.06d } },
                 { DateTime.Parse("2024-01-02"), new ResponseTimeRecord() { Count = 637, ResponseTime = 47.69d } },
@@ -28,7 +26,5 @@ namespace WebApi.Entities.ResponseTimeEntities
                 { DateTime.Parse("2024-01-14"), new ResponseTimeRecord() { Count = 54, ResponseTime = 48.41d } }
             };
         }
-
-        public string ToJson() => JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
     }
 }
