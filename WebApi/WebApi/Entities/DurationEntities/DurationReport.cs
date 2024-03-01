@@ -1,12 +1,15 @@
-﻿using System.Globalization;
-using System.Runtime.Serialization;
-using System.Text.Json;
-using WebApi.Entities.BaseEntities;
+﻿using WebApi.Entities.BaseEntities;
 
 namespace WebApi.Entities.DurationEntities
 {
+    /// <summary>
+    /// Отчёт о продолжительности чатов
+    /// </summary>
     public class DurationReport : ReportBase<DurationRecord>
     {
+        /// <summary>
+        /// Заполнение данных
+        /// </summary>
         public DurationReport()
         {
             Total = 10399;

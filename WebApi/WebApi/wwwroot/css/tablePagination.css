@@ -1,0 +1,26 @@
+﻿table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+.pagination {
+    justify-content:center;
+}
+.paginationList {
+    display: flex;
+    list-style-type: none;
+}
+.paginationItem {
+    padding: 8px;
+    margin: 8px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.paginationActive {
+    color: gold;
+}

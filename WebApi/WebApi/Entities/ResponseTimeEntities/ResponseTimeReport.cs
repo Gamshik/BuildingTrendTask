@@ -1,10 +1,15 @@
-﻿using System.Text.Json;
-using WebApi.Entities.BaseEntities;
+﻿using WebApi.Entities.BaseEntities;
 
 namespace WebApi.Entities.ResponseTimeEntities
 {
+    /// <summary>
+    /// Отчёт о времени ответов
+    /// </summary>
     public class ResponseTimeReport : ReportBase<ResponseTimeRecord>
     {
+        /// <summary>
+        /// Заполнение данных
+        /// </summary>
         public ResponseTimeReport()
         {
             Total = 7949;

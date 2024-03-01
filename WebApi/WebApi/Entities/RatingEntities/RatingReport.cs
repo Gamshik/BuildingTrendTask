@@ -1,10 +1,15 @@
-﻿using System.Text.Json;
-using WebApi.Entities.BaseEntities;
+﻿using WebApi.Entities.BaseEntities;
 
 namespace WebApi.Entities.RatingEntities
 {
+    /// <summary>
+    /// Отчёт о рейтинге
+    /// </summary>
     public class RatingReport : ReportBase<RatingRecord>
     {
+        /// <summary>
+        /// Заполнение данных
+        /// </summary>
         public RatingReport()
         {
             Total = 10339;

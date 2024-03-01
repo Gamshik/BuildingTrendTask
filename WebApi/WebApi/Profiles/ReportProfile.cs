@@ -4,13 +4,18 @@ using WebApi.Entities.DataTransferObjects;
 using WebApi.Entities.DurationEntities;
 using WebApi.Entities.RatingEntities;
 using WebApi.Entities.ResponseTimeEntities;
-using WebApi.Entities.TagEntities;
 using WebApi.Entities.TotalChatsEntities;
 
 namespace WebApi.Profiles
 {
+    /// <summary>
+    /// Правила для мапинга объектов
+    /// </summary>
     public class ReportProfile : Profile
     {
+        /// <summary>
+        /// Инициализация правил
+        /// </summary>
         public ReportProfile()
         {
             CreateMap<ReportBase<DurationRecord>, ReportDto<DurationRecord>>().ForMember(dest => dest.Records, opt => opt.MapFrom(src => src.Records.ToDictionary(record => record.Key.ToString("yyyy-MM-dd"), record => record.Value)));

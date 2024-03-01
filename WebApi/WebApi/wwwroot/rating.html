@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Rating</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/navigationPanel.min.css" />
+    <link rel="stylesheet" href="css/tablePagination.min.css" />
+    <script type="module" src="js/rating.js"></script>
+</head>
+<body>
+    <ul class="nav nav-tabs justify-content-center" id="myTab">
+        <li class="nav-item">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button">Home</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" id="tableDiv-tab" data-bs-toggle="tab" data-bs-target="#tableWorkFlow" type="button">Table</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home">
+            <h2 class="display-2">Welcome to the main page of the rating project!</h2>
+            <p class="display-5">All chat statistics for certain dates can be found in the "Table" tab!</p>
+            <p class="display-5">Click the back button below to return to the home page</p>
+            <button type="button" onclick="relocateToHome()" class="btn btn-lg btn-outline-dark">BACK</button>
+        </div>
+        <div class="tab-pane fade" id="tableWorkFlow">
+            <div class="posts" id="tableData"></div>
+            <div class="pagination" id="paginationButton"></div>
+        </div>
+    </div>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/navigate.js"></script>
+</body>
+</html>

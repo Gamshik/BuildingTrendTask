@@ -1,11 +1,15 @@
-﻿using System.Globalization;
-using System.Text.Json;
-using WebApi.Entities.BaseEntities;
+﻿using WebApi.Entities.BaseEntities;
 
 namespace WebApi.Entities.TotalChatsEntities
 {
+    /// <summary>
+    /// Отчёт о количестве чатов
+    /// </summary>
     public class TotalChatsReport : ReportBase<TotalChatsRecord>
     {
+        /// <summary>
+        /// Заполнение данными
+        /// </summary>
         public TotalChatsReport()
         {
             Total = 10399;

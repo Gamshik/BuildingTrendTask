@@ -1,4 +1,3 @@
-
 using AutoMapper;
 using WebApi.Profiles;
 
@@ -12,16 +11,16 @@ namespace WebApi
 
             builder.Services.AddControllers();
 
+            // Получение конфигурации мапера
             var config = new MapperConfiguration(cfg => cfg.AddProfiles(new List<Profile>
             {
                 new ReportProfile()
             }));
 
+            // Регистрация мапера в DI
             builder.Services.AddScoped<IMapper>(m => new Mapper(config));
 
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-
+            // Добавление CORS политики 
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", builder =>
@@ -30,15 +29,7 @@ namespace WebApi
                         .AllowAnyHeader());
             });
 
-
             var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
@@ -46,9 +37,6 @@ namespace WebApi
             app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
-
-            app.UseAuthorization();
-
 
             app.MapControllers();
 

@@ -22,6 +22,10 @@ namespace WebApi.Controllers
         private TagsReport _tagReport;
         private readonly IMapper _mapper;
 
+        /// <summary>
+        /// Конструктор в котором инициализируются переменные содержащие данные
+        /// </summary>
+        /// <param name="mapper">Авто маппер</param>
         public ChatsController(IMapper mapper)
         {
             _totalChatsReport = new TotalChatsReport();
@@ -37,6 +41,7 @@ namespace WebApi.Controllers
         {
             var finalTotalChatsReport = _totalChatsReport.GetFinalReport(data.Filters.From, data.Filters.To);
 
+            // Преобразование переменной в удобный для передачи данных вид
             var reportDto = _mapper.Map<ReportDto<TotalChatsRecord>>(finalTotalChatsReport);
 
             return Ok(ToJson(reportDto));
@@ -47,6 +52,7 @@ namespace WebApi.Controllers
         {
             var finalDurationReport = _durationReport.GetFinalReport(data.Filters.From, data.Filters.To);
 
+            // Преобразование переменной в удобный для передачи данных вид
             var reportDto = _mapper.Map<ReportDto<DurationRecord>>(finalDurationReport);
 
             return Ok(ToJson(reportDto));
@@ -57,6 +63,7 @@ namespace WebApi.Controllers
         {
             var finalRatingsReport = _ratingReport.GetFinalReport(data.Filters.From, data.Filters.To);
 
+            // Преобразование переменной в удобный для передачи данных вид
             var reportDto = _mapper.Map<ReportDto<RatingRecord>>(finalRatingsReport);
 
             return Ok(ToJson(reportDto));
@@ -67,6 +74,7 @@ namespace WebApi.Controllers
         {
             var finalResponseTimeReport = _responseTimeReport.GetFinalReport(data.Filters.From, data.Filters.To);
 
+            // Преобразование переменной в удобный для передачи данных вид
             var reportDto = _mapper.Map<ReportDto<ResponseTimeRecord>>(finalResponseTimeReport);
 
             return Ok(ToJson(reportDto));
@@ -77,6 +85,7 @@ namespace WebApi.Controllers
         {
             var finalTagsReport = _tagReport.GetFinalReport(data.Filters.From, data.Filters.To);
 
+            // Преобразование переменной в удобный для передачи данных вид
             var reportDto = _mapper.Map<ReportDto<dynamic>>(finalTagsReport);
 
             return Ok(ToJson(reportDto));
@@ -85,7 +94,7 @@ namespace WebApi.Controllers
         /// <summary>
         /// Метод реализующий сериализацию объекта в JSON
         /// </summary>
-        /// <typeparam name="TValue"></typeparam>
+        /// <typeparam name="TValue">Тип объекта в словаре</typeparam>
         /// <param name="report">Объект для серилазиации</param>
         /// <returns>Строку представляющую собой JSON</returns>
         private string ToJson<TValue>(ReportDto<TValue> report) => JsonSerializer.Serialize(report, new JsonSerializerOptions { WriteIndented = true });

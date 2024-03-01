@@ -1,16 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc.ViewEngines;
-using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text.Json;
-using WebApi.Entities.BaseEntities;
+﻿using WebApi.Entities.BaseEntities;
 
 namespace WebApi.Entities.TagEntities
 {
+    /// <summary>
+    /// Отчёт о использованных тегах
+    /// </summary>
     public class TagsReport : ReportBase<dynamic>
     {
+        /// <summary>
+        /// Заполнение данными
+        /// </summary>
         public TagsReport()
         {
             Total = 10399;

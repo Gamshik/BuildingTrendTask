@@ -1,14 +1,22 @@
-﻿using System.Text.Json;
-
-namespace WebApi.Entities.BaseEntities
+﻿namespace WebApi.Entities.BaseEntities
 {
+    /// <summary>
+    /// Структура отчёта
+    /// </summary>
+    /// <typeparam name="TValue">Тип объекта с данными за определённую дату</typeparam>
     public class ReportBase<TValue>
     {
-        public int Total { get; set; }
-        public Dictionary<DateTime, TValue> Records { get; set; }
-        
         /// <summary>
-        /// Метод выбирающий данные за определённый промежуток времени
+        /// Итоговое значение
+        /// </summary>
+        public int Total { get; set; }
+        /// <summary>
+        /// Данные за определённую дату
+        /// </summary>
+        public Dictionary<DateTime, TValue> Records { get; set; }
+
+        /// <summary>
+        /// Получение данных за определённый промежуток времени
         /// </summary>
         /// <param name="from">Начальная дата</param>
         /// <param name="to">Конечная дата</param>
@@ -20,7 +28,7 @@ namespace WebApi.Entities.BaseEntities
                 Total = Total,
                 Records = Records.Where(record => record.Key >= from && record.Key <= to).ToDictionary(key => key.Key, value => value.Value)
             };
-            
+
         }
     }
 }
