@@ -1,14 +1,13 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
-using WebApi.Entities;
-using WebApi.Entities.BaseEntities;
+using WebApi.Entities.DataTransferObjects;
 using WebApi.Entities.DurationEntities;
 using WebApi.Entities.RatingEntities;
 using WebApi.Entities.RequestEntities;
 using WebApi.Entities.ResponseTimeEntities;
 using WebApi.Entities.TagEntities;
 using WebApi.Entities.TotalChatsEntities;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebApi.Controllers
 {
@@ -21,14 +20,16 @@ namespace WebApi.Controllers
         private RatingReport _ratingReport;
         private ResponseTimeReport _responseTimeReport;
         private TagsReport _tagReport;
+        private readonly IMapper _mapper;
 
-        public ChatsController()
+        public ChatsController(IMapper mapper)
         {
             _totalChatsReport = new TotalChatsReport();
             _durationReport = new DurationReport();
             _ratingReport = new RatingReport();
             _responseTimeReport = new ResponseTimeReport();
             _tagReport = new TagsReport();
+            _mapper = mapper;
         }
 
         [HttpGet("total-chats-report")]
@@ -36,7 +37,9 @@ namespace WebApi.Controllers
         {
             var finalTotalChatsReport = _totalChatsReport.GetFinalReport(data.Filters.From, data.Filters.To);
 
-            return Ok(ToJson(finalTotalChatsReport));
+            var reportDto = _mapper.Map<ReportDto<TotalChatsRecord>>(finalTotalChatsReport);
+
+            return Ok(ToJson(reportDto));
         }
 
         [HttpGet("duration-report")]
@@ -44,7 +47,9 @@ namespace WebApi.Controllers
         {
             var finalDurationReport = _durationReport.GetFinalReport(data.Filters.From, data.Filters.To);
 
-            return Ok(ToJson(finalDurationReport));
+            var reportDto = _mapper.Map<ReportDto<DurationRecord>>(finalDurationReport);
+
+            return Ok(ToJson(reportDto));
         }
 
         [HttpGet("ratings-report")]
@@ -52,7 +57,9 @@ namespace WebApi.Controllers
         {
             var finalRatingsReport = _ratingReport.GetFinalReport(data.Filters.From, data.Filters.To);
 
-            return Ok(ToJson(finalRatingsReport));
+            var reportDto = _mapper.Map<ReportDto<RatingRecord>>(finalRatingsReport);
+
+            return Ok(ToJson(reportDto));
         }
 
         [HttpGet("response-time-report")]
@@ -60,7 +67,9 @@ namespace WebApi.Controllers
         {
             var finalResponseTimeReport = _responseTimeReport.GetFinalReport(data.Filters.From, data.Filters.To);
 
-            return Ok(ToJson(finalResponseTimeReport));
+            var reportDto = _mapper.Map<ReportDto<ResponseTimeRecord>>(finalResponseTimeReport);
+
+            return Ok(ToJson(reportDto));
         }
 
         [HttpGet("tags-report")]
@@ -68,15 +77,17 @@ namespace WebApi.Controllers
         {
             var finalTagsReport = _tagReport.GetFinalReport(data.Filters.From, data.Filters.To);
 
-            return Ok(ToJson(finalTagsReport));
+            var reportDto = _mapper.Map<ReportDto<dynamic>>(finalTagsReport);
+
+            return Ok(ToJson(reportDto));
         }
 
-
         /// <summary>
-        ///  Метод реализующий сериализацию объекта в JSON
+        /// Метод реализующий сериализацию объекта в JSON
         /// </summary>
-        /// <param name="obj">Объект для серилазиации</param>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="report">Объект для серилазиации</param>
         /// <returns>Строку представляющую собой JSON</returns>
-        private string ToJson(object obj) => JsonSerializer.Serialize(obj, new JsonSerializerOptions { WriteIndented = true });
+        private string ToJson<TValue>(ReportDto<TValue> report) => JsonSerializer.Serialize(report, new JsonSerializerOptions { WriteIndented = true });
     }
 }

@@ -2,10 +2,10 @@
 
 namespace WebApi.Entities.BaseEntities
 {
-    public abstract class BaseReport<TValue>
+    public class ReportBase<TValue>
     {
-        public int Total;
-        public Dictionary<DateTime, TValue> Records;
+        public int Total { get; set; }
+        public Dictionary<DateTime, TValue> Records { get; set; }
         
         /// <summary>
         /// Метод выбирающий данные за определённый промежуток времени
@@ -13,13 +13,14 @@ namespace WebApi.Entities.BaseEntities
         /// <param name="from">Начальная дата</param>
         /// <param name="to">Конечная дата</param>
         /// <returns>Итоговый отчёт</returns>
-        public object GetFinalReport(DateTime from, DateTime to)
+        public ReportBase<TValue> GetFinalReport(DateTime from, DateTime to)
         {
-            return new
+            return new ReportBase<TValue>
             {
-                Total,
+                Total = Total,
                 Records = Records.Where(record => record.Key >= from && record.Key <= to).ToDictionary(key => key.Key, value => value.Value)
             };
+            
         }
     }
 }

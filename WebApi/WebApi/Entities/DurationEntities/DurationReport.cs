@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using System.Globalization;
+using System.Runtime.Serialization;
+using System.Text.Json;
 using WebApi.Entities.BaseEntities;
 
 namespace WebApi.Entities.DurationEntities
