@@ -8,4 +8,7 @@
 
 ## Docker
 
-Image проекта размещён на docker hub - https://hub.docker.com/repository/docker/gamshikk/buildtrend/general (port - 8080)
+Image проекта размещён на docker hub - https://hub.docker.com/repository/docker/gamshikk/buildtrend/general
+При настройке контейнера необходимо указать порт - 8080.
+Для перехода на главную страницу в строке браузера введите следующуй URL:
+http://localhost:8080/index.html
